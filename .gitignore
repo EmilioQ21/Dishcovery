@@ -1,0 +1,40 @@
+# --- Secrets and local config (never commit) ---
+.env
+.env.*
+!.env.example
+.session
+
+# --- Python ---
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# --- Database data (local Chroma folder, any dumps) ---
+.chroma/
+chroma_data/
+*.sqlite3
+*.log
+
+# --- Old Intermediate Revision scripts (local backup only) ---
+_intermediate_revision/
+
+# --- Editors / OS ---
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Office temp files (report / slides open in Word or PowerPoint) ---
+~$*

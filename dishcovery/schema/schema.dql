@@ -1,0 +1,55 @@
+# Dishcovery - Dgraph schema
+# Applied by: python -m dishcovery.schema.init_all   (or Ratel > Schema > Bulk Edit)
+
+user_id:         string @index(exact) @upsert .
+restaurant_id:   string @index(exact) @upsert .
+dish_id:         string @index(exact) @upsert .
+review_id:       string @index(exact) @upsert .
+cuisine_name:    string @index(exact) @upsert .
+name:            string @index(term, trigram) .
+city:            string @index(exact) .
+price_level:     int    @index(int) .
+rating:          int    @index(int) .
+created_at:      datetime @index(hour) .
+
+follows:         [uid] @reverse @count .
+author:          uid   @reverse .
+dish:            uid   @reverse .
+of_restaurant:   uid   @reverse .
+served_at:       uid   @reverse .
+has_cuisine:     [uid] @reverse .
+
+type User {
+  user_id
+  name
+  city
+  follows
+}
+
+type Restaurant {
+  restaurant_id
+  name
+  city
+  price_level
+  has_cuisine
+}
+
+type Dish {
+  dish_id
+  name
+  price_level
+  served_at
+}
+
+type Cuisine {
+  cuisine_name
+}
+
+type Review {
+  review_id
+  rating
+  created_at
+  author
+  dish
+  of_restaurant
+}

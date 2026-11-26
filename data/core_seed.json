@@ -1,0 +1,799 @@
+{
+  "users": [
+    {
+      "_id": "user_0001",
+      "email": "emilio@example.com",
+      "password_hash": "$2b$12$demo.hash.emilio",
+      "name": "Emilio Segura",
+      "city": "Guadalajara",
+      "bio": "Software engineering student who loves tacos.",
+      "preferences": {
+        "cuisines": [
+          "mexican",
+          "japanese"
+        ],
+        "dietary": [],
+        "price_range": [
+          1,
+          2
+        ]
+      },
+      "favorites": {
+        "restaurants": [
+          "rest_0001"
+        ],
+        "dishes": [
+          "dish_0001"
+        ]
+      },
+      "created_at": "2026-09-15T18:30:00Z"
+    },
+    {
+      "_id": "user_0002",
+      "email": "enrique@example.com",
+      "password_hash": "$2b$12$demo.hash.enrique",
+      "name": "Enrique Milo",
+      "city": "Guadalajara",
+      "bio": "Birria hunter.",
+      "preferences": {
+        "cuisines": [
+          "mexican"
+        ],
+        "dietary": [],
+        "price_range": [
+          1,
+          2
+        ]
+      },
+      "favorites": {
+        "restaurants": [
+          "rest_0004"
+        ],
+        "dishes": [
+          "dish_0006"
+        ]
+      },
+      "created_at": "2026-09-16T10:00:00Z"
+    },
+    {
+      "_id": "user_0003",
+      "email": "jorge@example.com",
+      "password_hash": "$2b$12$demo.hash.jorge",
+      "name": "Jorge Delgadillo",
+      "city": "Zapopan",
+      "bio": "Vegetarian, sushi on weekends.",
+      "preferences": {
+        "cuisines": [
+          "japanese",
+          "healthy"
+        ],
+        "dietary": [
+          "vegetarian"
+        ],
+        "price_range": [
+          1,
+          2
+        ]
+      },
+      "favorites": {
+        "restaurants": [
+          "rest_0002"
+        ],
+        "dishes": [
+          "dish_0004"
+        ]
+      },
+      "created_at": "2026-09-18T12:15:00Z"
+    }
+  ],
+  "restaurants": [
+    {
+      "_id": "rest_0001",
+      "name": "Tacos Los Provi",
+      "cuisine": [
+        "mexican",
+        "street food"
+      ],
+      "price_level": 1,
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          -103.417,
+          20.6068
+        ]
+      },
+      "address": {
+        "street": "Av. Tecnologico 1200",
+        "city": "Tlaquepaque",
+        "state": "Jalisco"
+      },
+      "hours": {
+        "mon": {
+          "open": "09:00",
+          "close": "22:00"
+        },
+        "tue": {
+          "open": "09:00",
+          "close": "22:00"
+        },
+        "wed": {
+          "open": "09:00",
+          "close": "22:00"
+        },
+        "thu": {
+          "open": "09:00",
+          "close": "22:00"
+        },
+        "fri": {
+          "open": "09:00",
+          "close": "22:00"
+        },
+        "sat": {
+          "open": "09:00",
+          "close": "22:00"
+        },
+        "sun": {
+          "closed": true
+        }
+      },
+      "attributes": {
+        "terrace": true,
+        "vegetarian_options": true,
+        "pet_friendly": false,
+        "delivery": true
+      },
+      "created_at": "2026-10-01T10:00:00Z"
+    },
+    {
+      "_id": "rest_0002",
+      "name": "Sushi Hana",
+      "cuisine": [
+        "japanese",
+        "sushi"
+      ],
+      "price_level": 2,
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          -103.412,
+          20.61
+        ]
+      },
+      "address": {
+        "street": "Calle Ayuntamiento 45",
+        "city": "Tlaquepaque",
+        "state": "Jalisco"
+      },
+      "hours": {
+        "mon": {
+          "closed": true
+        },
+        "tue": {
+          "open": "13:00",
+          "close": "23:00"
+        },
+        "wed": {
+          "open": "13:00",
+          "close": "23:00"
+        },
+        "thu": {
+          "open": "13:00",
+          "close": "23:00"
+        },
+        "fri": {
+          "open": "13:00",
+          "close": "23:00"
+        },
+        "sat": {
+          "open": "13:00",
+          "close": "23:00"
+        },
+        "sun": {
+          "open": "13:00",
+          "close": "23:00"
+        }
+      },
+      "attributes": {
+        "terrace": false,
+        "vegetarian_options": true,
+        "pet_friendly": false,
+        "delivery": true
+      },
+      "created_at": "2026-10-01T10:05:00Z"
+    },
+    {
+      "_id": "rest_0003",
+      "name": "Trattoria Bella",
+      "cuisine": [
+        "italian"
+      ],
+      "price_level": 3,
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          -103.39,
+          20.67
+        ]
+      },
+      "address": {
+        "street": "Av. Chapultepec 210",
+        "city": "Guadalajara",
+        "state": "Jalisco"
+      },
+      "hours": {
+        "mon": {
+          "open": "13:00",
+          "close": "23:30"
+        },
+        "tue": {
+          "open": "13:00",
+          "close": "23:30"
+        },
+        "wed": {
+          "open": "13:00",
+          "close": "23:30"
+        },
+        "thu": {
+          "open": "13:00",
+          "close": "23:30"
+        },
+        "fri": {
+          "open": "13:00",
+          "close": "23:30"
+        },
+        "sat": {
+          "open": "13:00",
+          "close": "23:30"
+        },
+        "sun": {
+          "open": "13:00",
+          "close": "23:30"
+        }
+      },
+      "attributes": {
+        "terrace": true,
+        "vegetarian_options": true,
+        "pet_friendly": true,
+        "delivery": false
+      },
+      "created_at": "2026-10-01T10:10:00Z"
+    },
+    {
+      "_id": "rest_0004",
+      "name": "Birrieria El Tapatio",
+      "cuisine": [
+        "mexican",
+        "traditional"
+      ],
+      "price_level": 1,
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          -103.419,
+          20.605
+        ]
+      },
+      "address": {
+        "street": "Calle Independencia 88",
+        "city": "Tlaquepaque",
+        "state": "Jalisco"
+      },
+      "hours": {
+        "mon": {
+          "open": "08:00",
+          "close": "17:00"
+        },
+        "tue": {
+          "open": "08:00",
+          "close": "17:00"
+        },
+        "wed": {
+          "open": "08:00",
+          "close": "17:00"
+        },
+        "thu": {
+          "open": "08:00",
+          "close": "17:00"
+        },
+        "fri": {
+          "open": "08:00",
+          "close": "17:00"
+        },
+        "sat": {
+          "open": "08:00",
+          "close": "17:00"
+        },
+        "sun": {
+          "open": "08:00",
+          "close": "17:00"
+        }
+      },
+      "attributes": {
+        "terrace": true,
+        "vegetarian_options": false,
+        "pet_friendly": true,
+        "delivery": false
+      },
+      "created_at": "2026-10-01T10:15:00Z"
+    },
+    {
+      "_id": "rest_0005",
+      "name": "Green Bowl",
+      "cuisine": [
+        "healthy",
+        "vegetarian"
+      ],
+      "price_level": 2,
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          -103.414,
+          20.609
+        ]
+      },
+      "address": {
+        "street": "Av. Revolucion 310",
+        "city": "Tlaquepaque",
+        "state": "Jalisco"
+      },
+      "hours": {
+        "mon": {
+          "open": "09:00",
+          "close": "20:00"
+        },
+        "tue": {
+          "open": "09:00",
+          "close": "20:00"
+        },
+        "wed": {
+          "open": "09:00",
+          "close": "20:00"
+        },
+        "thu": {
+          "open": "09:00",
+          "close": "20:00"
+        },
+        "fri": {
+          "open": "09:00",
+          "close": "20:00"
+        },
+        "sat": {
+          "open": "09:00",
+          "close": "20:00"
+        },
+        "sun": {
+          "closed": true
+        }
+      },
+      "attributes": {
+        "terrace": true,
+        "vegetarian_options": true,
+        "pet_friendly": true,
+        "delivery": true
+      },
+      "created_at": "2026-10-01T10:20:00Z"
+    }
+  ],
+  "dishes": [
+    {
+      "_id": "dish_0001",
+      "restaurant_id": "rest_0001",
+      "restaurant_name": "Tacos Los Provi",
+      "name": "Taco al pastor",
+      "price": 25,
+      "price_level": 1,
+      "description": "Marinated pork with pineapple, onion and cilantro on a corn tortilla. Spicy, street food, cheap.",
+      "tags": [
+        "spicy",
+        "street food",
+        "cheap"
+      ],
+      "vegetarian": false
+    },
+    {
+      "_id": "dish_0002",
+      "restaurant_id": "rest_0001",
+      "restaurant_name": "Tacos Los Provi",
+      "name": "Taco de suadero",
+      "price": 28,
+      "price_level": 1,
+      "description": "Thin-cut beef grilled until crispy, with onion and cilantro on a corn tortilla.",
+      "tags": [
+        "street food",
+        "beef"
+      ],
+      "vegetarian": false
+    },
+    {
+      "_id": "dish_0003",
+      "restaurant_id": "rest_0002",
+      "restaurant_name": "Sushi Hana",
+      "name": "Salmon nigiri",
+      "price": 85,
+      "price_level": 1,
+      "description": "Fresh salmon over seasoned sushi rice. Light and clean flavors.",
+      "tags": [
+        "raw fish",
+        "light"
+      ],
+      "vegetarian": false
+    },
+    {
+      "_id": "dish_0004",
+      "restaurant_id": "rest_0002",
+      "restaurant_name": "Sushi Hana",
+      "name": "Spicy tuna roll",
+      "price": 120,
+      "price_level": 2,
+      "description": "Tuna with chili mayo, cucumber and sesame, rolled in rice and nori. Spicy.",
+      "tags": [
+        "spicy",
+        "raw fish"
+      ],
+      "vegetarian": false
+    },
+    {
+      "_id": "dish_0005",
+      "restaurant_id": "rest_0003",
+      "restaurant_name": "Trattoria Bella",
+      "name": "Fettuccine alfredo",
+      "price": 210,
+      "price_level": 3,
+      "description": "Fresh fettuccine in a creamy parmesan and butter sauce.",
+      "tags": [
+        "pasta",
+        "creamy"
+      ],
+      "vegetarian": true
+    },
+    {
+      "_id": "dish_0006",
+      "restaurant_id": "rest_0004",
+      "restaurant_name": "Birrieria El Tapatio",
+      "name": "Birria de res",
+      "price": 90,
+      "price_level": 1,
+      "description": "Slow-cooked beef stew in a rich, spicy chili broth, served with tortillas and consomme.",
+      "tags": [
+        "spicy",
+        "stew",
+        "traditional"
+      ],
+      "vegetarian": false
+    },
+    {
+      "_id": "dish_0007",
+      "restaurant_id": "rest_0005",
+      "restaurant_name": "Green Bowl",
+      "name": "Quinoa bowl",
+      "price": 110,
+      "price_level": 2,
+      "description": "Quinoa with avocado, roasted vegetables and a lemon dressing. Healthy and filling.",
+      "tags": [
+        "healthy",
+        "vegan"
+      ],
+      "vegetarian": true
+    },
+    {
+      "_id": "dish_0008",
+      "restaurant_id": "rest_0005",
+      "restaurant_name": "Green Bowl",
+      "name": "Veggie tacos",
+      "price": 70,
+      "price_level": 1,
+      "description": "Grilled mushrooms, nopal and beans on corn tortillas with fresh salsa. Cheap and vegetarian.",
+      "tags": [
+        "vegetarian",
+        "cheap",
+        "tacos"
+      ],
+      "vegetarian": true
+    }
+  ],
+  "reviews": [
+    {
+      "_id": "rev_0001",
+      "user_id": "user_0001",
+      "restaurant_id": "rest_0001",
+      "dish_id": "dish_0001",
+      "rating": 5,
+      "text": "Best al pastor near campus, spicy and cheap.",
+      "created_at": "2026-10-20T14:12:00Z"
+    },
+    {
+      "_id": "rev_0002",
+      "user_id": "user_0001",
+      "restaurant_id": "rest_0002",
+      "dish_id": "dish_0003",
+      "rating": 4,
+      "text": "Fresh salmon, good value.",
+      "created_at": "2026-10-22T19:30:00Z"
+    },
+    {
+      "_id": "rev_0003",
+      "user_id": "user_0002",
+      "restaurant_id": "rest_0001",
+      "dish_id": "dish_0001",
+      "rating": 5,
+      "text": "Juicy pork and perfect pineapple.",
+      "created_at": "2026-10-21T13:00:00Z"
+    },
+    {
+      "_id": "rev_0004",
+      "user_id": "user_0002",
+      "restaurant_id": "rest_0002",
+      "dish_id": "dish_0003",
+      "rating": 4,
+      "text": "Solid nigiri, fast service.",
+      "created_at": "2026-10-23T20:10:00Z"
+    },
+    {
+      "_id": "rev_0005",
+      "user_id": "user_0002",
+      "restaurant_id": "rest_0004",
+      "dish_id": "dish_0006",
+      "rating": 5,
+      "text": "Rich, spicy birria. The broth is amazing.",
+      "created_at": "2026-10-25T11:45:00Z"
+    },
+    {
+      "_id": "rev_0006",
+      "user_id": "user_0003",
+      "restaurant_id": "rest_0002",
+      "dish_id": "dish_0003",
+      "rating": 5,
+      "text": "Best salmon nigiri in town.",
+      "created_at": "2026-10-24T21:00:00Z"
+    },
+    {
+      "_id": "rev_0007",
+      "user_id": "user_0003",
+      "restaurant_id": "rest_0002",
+      "dish_id": "dish_0004",
+      "rating": 5,
+      "text": "Spicy tuna roll with a real kick.",
+      "created_at": "2026-10-26T20:20:00Z"
+    },
+    {
+      "_id": "rev_0008",
+      "user_id": "user_0003",
+      "restaurant_id": "rest_0005",
+      "dish_id": "dish_0007",
+      "rating": 4,
+      "text": "Healthy and filling bowl.",
+      "created_at": "2026-10-27T14:05:00Z"
+    },
+    {
+      "_id": "rev_0009",
+      "user_id": "user_0003",
+      "restaurant_id": "rest_0001",
+      "dish_id": "dish_0001",
+      "rating": 2,
+      "text": "Too greasy for me.",
+      "created_at": "2026-10-28T15:30:00Z"
+    },
+    {
+      "_id": "rev_0010",
+      "user_id": "user_0001",
+      "restaurant_id": "rest_0001",
+      "dish_id": "dish_0002",
+      "rating": 4,
+      "text": "Great suadero, a little salty.",
+      "created_at": "2026-10-29T14:40:00Z"
+    },
+    {
+      "_id": "rev_0011",
+      "user_id": "user_0002",
+      "restaurant_id": "rest_0003",
+      "dish_id": "dish_0005",
+      "rating": 3,
+      "text": "Creamy but pricey.",
+      "created_at": "2026-10-30T21:15:00Z"
+    },
+    {
+      "_id": "rev_0012",
+      "user_id": "user_0003",
+      "restaurant_id": "rest_0004",
+      "dish_id": "dish_0006",
+      "rating": 4,
+      "text": "Great birria, long wait.",
+      "created_at": "2026-10-31T12:30:00Z"
+    }
+  ],
+  "lists": [
+    {
+      "_id": "list_0001",
+      "user_id": "user_0001",
+      "name": "Want to try",
+      "items": [
+        {
+          "type": "restaurant",
+          "ref_id": "rest_0005"
+        },
+        {
+          "type": "dish",
+          "ref_id": "dish_0006"
+        }
+      ]
+    },
+    {
+      "_id": "list_0002",
+      "user_id": "user_0001",
+      "name": "Best tacos",
+      "items": [
+        {
+          "type": "dish",
+          "ref_id": "dish_0001"
+        },
+        {
+          "type": "dish",
+          "ref_id": "dish_0002"
+        }
+      ]
+    }
+  ],
+  "visits": [
+    [
+      "user_0001",
+      "2026-09-12T14:00:00Z",
+      "rest_0001"
+    ],
+    [
+      "user_0001",
+      "2026-09-25T20:00:00Z",
+      "rest_0002"
+    ],
+    [
+      "user_0001",
+      "2026-10-05T14:10:00Z",
+      "rest_0001"
+    ],
+    [
+      "user_0001",
+      "2026-10-20T14:00:00Z",
+      "rest_0001"
+    ],
+    [
+      "user_0001",
+      "2026-10-22T19:20:00Z",
+      "rest_0002"
+    ],
+    [
+      "user_0001",
+      "2026-10-29T14:30:00Z",
+      "rest_0001"
+    ],
+    [
+      "user_0002",
+      "2026-10-21T12:50:00Z",
+      "rest_0001"
+    ],
+    [
+      "user_0002",
+      "2026-10-23T20:00:00Z",
+      "rest_0002"
+    ],
+    [
+      "user_0002",
+      "2026-10-25T11:30:00Z",
+      "rest_0004"
+    ],
+    [
+      "user_0003",
+      "2026-10-24T20:45:00Z",
+      "rest_0002"
+    ],
+    [
+      "user_0003",
+      "2026-10-26T20:10:00Z",
+      "rest_0002"
+    ],
+    [
+      "user_0003",
+      "2026-10-27T14:00:00Z",
+      "rest_0005"
+    ],
+    [
+      "user_0003",
+      "2026-10-31T12:20:00Z",
+      "rest_0004"
+    ]
+  ],
+  "searches": [
+    [
+      "user_0001",
+      "2026-10-30T09:15:00Z",
+      "spicy tacos",
+      {
+        "price": "1"
+      }
+    ],
+    [
+      "user_0001",
+      "2026-10-31T12:02:00Z",
+      "sushi near campus",
+      {}
+    ],
+    [
+      "user_0001",
+      "2026-11-01T18:40:00Z",
+      "vegetarian options",
+      {
+        "price": "1"
+      }
+    ],
+    [
+      "user_0002",
+      "2026-10-24T10:00:00Z",
+      "birria",
+      {}
+    ],
+    [
+      "user_0003",
+      "2026-10-26T19:00:00Z",
+      "spicy tuna roll",
+      {}
+    ]
+  ],
+  "follows": {
+    "user_0001": [
+      "user_0002"
+    ],
+    "user_0002": [
+      "user_0001",
+      "user_0003"
+    ],
+    "user_0003": [
+      "user_0002"
+    ]
+  },
+  "trending_city": "Guadalajara",
+  "trending_days": [
+    "2026-10-29",
+    "2026-10-30",
+    "2026-10-31",
+    "2026-11-01",
+    "2026-11-02",
+    "2026-11-03",
+    "2026-11-04"
+  ],
+  "trending": {
+    "dish_0001": [
+      9,
+      8,
+      11,
+      10,
+      12,
+      9,
+      10
+    ],
+    "dish_0006": [
+      5,
+      6,
+      8,
+      9,
+      7,
+      10,
+      8
+    ],
+    "dish_0004": [
+      3,
+      4,
+      2,
+      5,
+      4,
+      3,
+      4
+    ],
+    "dish_0003": [
+      2,
+      3,
+      2,
+      3,
+      2,
+      2,
+      3
+    ]
+  }
+}

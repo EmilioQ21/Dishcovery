@@ -1,0 +1,416 @@
+[
+  {
+    "fr": "FR-20",
+    "test": "test_checkin_writes_three_tables",
+    "acceptance": "Input: check-in at rest_0004. Expected: row in visits_by_user, visits_by_user_month and activity_by_user.",
+    "outcome": "PASS",
+    "seconds": 1.913,
+    "evidence": "check-in Birrieria El Tapatio at 2026-11-26T00:50:54.790863+00:00 -> 3 tables",
+    "error": ""
+  },
+  {
+    "fr": "FR-21",
+    "test": "test_food_passport_newest_first",
+    "acceptance": "Input: user_0001. Expected: visited places, newest first, with denormalized name and cuisine.",
+    "outcome": "PASS",
+    "seconds": 0.043,
+    "evidence": "6 visits, latest Tacos Los Provi at 2026-10-29 14:30:00",
+    "error": ""
+  },
+  {
+    "fr": "FR-22",
+    "test": "test_recent_activity_newest_first",
+    "acceptance": "Input: user_0001, limit 20. Expected: <= 20 events in descending time order across month buckets.",
+    "outcome": "PASS",
+    "seconds": 0.183,
+    "evidence": "search:ramen, search:vegetarian options, search:sushi near campus, search:spicy tacos",
+    "error": ""
+  },
+  {
+    "fr": "FR-23",
+    "test": "test_search_history",
+    "acceptance": "Steps: search 'birria' as a logged user. Expected: newest row of searches_by_user is that search.",
+    "outcome": "PASS",
+    "seconds": 0.069,
+    "evidence": "birria @ 2026-11-26 00:50:58.297000",
+    "error": ""
+  },
+  {
+    "fr": "FR-24",
+    "test": "test_trending_and_view_counter",
+    "acceptance": "Steps: view dish_0001 once, read 7 daily partitions of Tlaquepaque. Expected: today's counter +1, ranking sorted, dish_0001 on top.",
+    "outcome": "PASS",
+    "seconds": 0.248,
+    "evidence": "top: Taco al pastor 165, Chicken katsu curry 96, Veggie tacos 78",
+    "error": ""
+  },
+  {
+    "fr": "FR-25",
+    "test": "test_personal_stats",
+    "acceptance": "Input: user_0001. Expected: visits per month (Cassandra), reviews by cuisine (MongoDB $lookup) and rating distribution (Dgraph @groupby) agree with the source data.",
+    "outcome": "PASS",
+    "seconds": 0.105,
+    "evidence": "visits={'2026-11': 0, '2026-10': 4, '2026-09': 2, '2026-08': 0, '2026-07': 0, '2026-06': 0}; ratings=[{'rating': 5, 'count': 1}, {'rating': 4, 'count': 2}]",
+    "error": ""
+  },
+  {
+    "fr": "FR-06",
+    "test": "test_register_restaurant",
+    "acceptance": "Input: name, cuisines, price, GeoJSON point, hours, attributes. Expected: document in MongoDB, Restaurant node in Dgraph, embedding in ChromaDB.",
+    "outcome": "PASS",
+    "seconds": 0.025,
+    "evidence": "rest_0061 in MongoDB, Dgraph (2 cuisines), ChromaDB",
+    "error": ""
+  },
+  {
+    "fr": "FR-06",
+    "test": "test_restaurant_validator_rejects_bad_price",
+    "acceptance": "Input: price_level 9. Expected: rejected by the restaurants $jsonSchema validator.",
+    "outcome": "PASS",
+    "seconds": 0.007,
+    "evidence": "",
+    "error": ""
+  },
+  {
+    "fr": "FR-07",
+    "test": "test_add_dish",
+    "acceptance": "Input: dish name, price, tags. Expected: dish in dishes and in the embedded menu_summary, Dish->Restaurant edge, dish embedding.",
+    "outcome": "PASS",
+    "seconds": 0.29,
+    "evidence": "dish_0224 -> dishes, menu_summary, served_at edge, Chroma",
+    "error": ""
+  },
+  {
+    "fr": "FR-08",
+    "test": "test_restaurant_detail_single_read",
+    "acceptance": "Input: rest_0001. Expected: one document read returns menu, hours, attributes and rating.",
+    "outcome": "PASS",
+    "seconds": 0.003,
+    "evidence": "Tacos Los Provi: 2 menu items, rating 4.00 (7)",
+    "error": ""
+  },
+  {
+    "fr": "FR-09",
+    "test": "test_search_by_cuisine_and_price",
+    "acceptance": "Input: cuisine=mexican, max price 2. Expected: only mexican restaurants with price <= 2, sorted by rating desc.",
+    "outcome": "PASS",
+    "seconds": 0.005,
+    "evidence": "Antojitos El Patron(5.0), La Palapa de El Capitan(4.5), Antojitos San Juan(4.3), Tacos Dona Lupe(4.2)",
+    "error": ""
+  },
+  {
+    "fr": "FR-09",
+    "test": "test_text_search_with_facets",
+    "acceptance": "Input: text 'ramen'. Expected: matching restaurants plus facet counts by cuisine, price and city ($facet).",
+    "outcome": "PASS",
+    "seconds": 0.004,
+    "evidence": "4 results; by_cuisine=[{'_id': 'japanese', 'n': 4}, {'_id': 'sushi', 'n': 4}]",
+    "error": ""
+  },
+  {
+    "fr": "FR-10",
+    "test": "test_nearby_restaurants",
+    "acceptance": "Input: ITESO coordinates, 2 km. Expected: $geoNear results sorted by distance, all within 2000 m.",
+    "outcome": "PASS",
+    "seconds": 0.007,
+    "evidence": "Tacos Los Provi 130m, Green Bowl 267m, Birrieria El Tapatio 419m, Tacos Los Arcos 477m",
+    "error": ""
+  },
+  {
+    "fr": "FR-11",
+    "test": "test_filter_by_attributes",
+    "acceptance": "Input: terrace=true and pet_friendly=true. Expected: only restaurants with both flags, same count as a direct count.",
+    "outcome": "PASS",
+    "seconds": 0.007,
+    "evidence": "9 restaurants with terrace + pet friendly",
+    "error": ""
+  },
+  {
+    "fr": "FR-32",
+    "test": "test_rag_retrieves_relevant_sources",
+    "acceptance": "Input: 'Where can I eat good birria?'. Expected: relevant passages (distance <= threshold) about birria, cited as sources in the prompt.",
+    "outcome": "PASS",
+    "seconds": 0.206,
+    "evidence": "top source rev_0005 (0.347): Review of Birria de res at Birrieria El Tapatio, rated 5/5: Rich, spicy birria. ",
+    "error": ""
+  },
+  {
+    "fr": "FR-32",
+    "test": "test_rag_answer_from_llm_with_citations",
+    "acceptance": "Input: same question with the LLM enabled. Expected: a non-empty answer that cites sources like [S1].",
+    "outcome": "PASS",
+    "seconds": 1.621,
+    "evidence": "Good birria can be found at **Birrieria El Tapatio** in Tlaquepaque (ITESO / Periferico Sur) [S2].  \nCustomers rave about its **rich, spicy birria** and especially the **amazing broth** [S1]. Some reviewers note it’s a quick meal with a **serious kic",
+    "error": ""
+  },
+  {
+    "fr": "FR-32",
+    "test": "test_rag_defined_answer_when_nothing_is_relevant",
+    "acceptance": "Input: 'How do I replace the clutch of a car?'. Expected: no passage passes the threshold and the fixed 'no information' answer is returned without calling the LLM.",
+    "outcome": "PASS",
+    "seconds": 0.125,
+    "evidence": "closest distance 0.852 > threshold 0.65",
+    "error": ""
+  },
+  {
+    "fr": "FR-33",
+    "test": "test_natural_language_with_price_and_location",
+    "acceptance": "Input: 'something spicy and cheap', max price 1, within 2 km of ITESO. Expected: only cheap dishes from nearby restaurants, spicy first.",
+    "outcome": "PASS",
+    "seconds": 0.061,
+    "evidence": "Taco al pastor 0.519, Veggie tacos 0.611, Loaded fries 0.621",
+    "error": ""
+  },
+  {
+    "fr": "FR-34",
+    "test": "test_similar_dishes",
+    "acceptance": "Input: dish_0003 (Salmon nigiri). Expected: nearest neighbours by embedding, excluding the dish itself and other copies of it; raw-fish dishes first.",
+    "outcome": "PASS",
+    "seconds": 0.014,
+    "evidence": "Spicy tuna roll, Chicken katsu curry, Aguachile verde, Tonkotsu ramen, Avocado maki",
+    "error": ""
+  },
+  {
+    "fr": "FR-35",
+    "test": "test_preferences_become_filters",
+    "acceptance": "Input: user_0003 (vegetarian, price 1-2). Expected: where filter built from MongoDB preferences; every suggestion vegetarian and price <= 2.",
+    "outcome": "PASS",
+    "seconds": 0.051,
+    "evidence": "where={'$and': [{'price_level': {'$lte': 2}}, {'vegetarian': True}]} -> Quinoa bowl, Acai bowl, Acai bowl",
+    "error": ""
+  },
+  {
+    "fr": "OPT",
+    "test": "test_mongo_main_queries_use_indexes",
+    "acceptance": "Expected: every main MongoDB query uses an index (IXSCAN, TEXT or GEO_NEAR), never COLLSCAN.",
+    "outcome": "PASS",
+    "seconds": 0.02,
+    "evidence": "FR-02 login by email: FETCH<-IXSCAN(ux_email); FR-09 cuisine + price sorted by rating: LIMIT<-FETCH<-IXSCAN(ix_cuisine_rating_price); FR-09 text search: TEXT_MATCH(txt_search)<-FETCH<-IXSCAN(txt_search); FR-11 terrace filter: FETCH<-IXSCAN(ix_attr_terrace); FR-07 dishes of a restaurant: FETCH<-IXSCA",
+    "error": ""
+  },
+  {
+    "fr": "OPT",
+    "test": "test_cassandra_reads_one_partition",
+    "acceptance": "Expected: the trace of Q1 shows a single-partition read.",
+    "outcome": "PASS",
+    "seconds": 0.038,
+    "evidence": "executing single-partition query on activity_by_user",
+    "error": ""
+  },
+  {
+    "fr": "OPT",
+    "test": "test_dgraph_traversals_are_fast",
+    "acceptance": "Expected: the 5-hop recommendation query runs in under 500 ms on the server.",
+    "outcome": "PASS",
+    "seconds": 0.084,
+    "evidence": "{'FR-27 followers': 12.98143, 'FR-28 feed': 15.133404, 'FR-29 recommendations (5 hops)': 36.717231, 'FR-30 suggestions': 7.186683}",
+    "error": ""
+  },
+  {
+    "fr": "FR-15",
+    "test": "test_write_review_reaches_all_four_databases",
+    "acceptance": "Input: 5-star review of dish_0006 at rest_0004. Expected: MongoDB doc, Cassandra row (newest first), Dgraph Review node with edges, Chroma embedding, rating recomputed.",
+    "outcome": "PASS",
+    "seconds": 0.294,
+    "evidence": "rev_0607 written to mongodb, cassandra, dgraph, chromadb",
+    "error": ""
+  },
+  {
+    "fr": "FR-15",
+    "test": "test_review_constraints",
+    "acceptance": "Input: rating 6, then a second review of the same dish. Expected: validator rejects 6; unique index rejects the duplicate.",
+    "outcome": "PASS",
+    "seconds": 0.222,
+    "evidence": "",
+    "error": ""
+  },
+  {
+    "fr": "FR-16",
+    "test": "test_edit_and_delete_review",
+    "acceptance": "Steps: write 2 stars, edit to 4, delete. Expected: every database reflects the edit, then the deletion; restaurant rating recomputed.",
+    "outcome": "PASS",
+    "seconds": 0.498,
+    "evidence": "rev_0607 edited 2->4 in 4 DBs, then deleted from 4 DBs",
+    "error": ""
+  },
+  {
+    "fr": "FR-16",
+    "test": "test_cannot_edit_someone_elses_review",
+    "acceptance": "Input: fresh user edits rev_0001 (owned by user_0001). Expected: rejected.",
+    "outcome": "PASS",
+    "seconds": 0.004,
+    "evidence": "",
+    "error": ""
+  },
+  {
+    "fr": "FR-17",
+    "test": "test_restaurant_reviews_newest_first",
+    "acceptance": "Input: restaurant with the most reviews. Expected: Cassandra returns at most 10 rows, ordered by created_at desc.",
+    "outcome": "PASS",
+    "seconds": 0.031,
+    "evidence": "rest_0041: 10 rows, 2026-11-18 17:13:00 .. 2026-10-01 14:25:00",
+    "error": ""
+  },
+  {
+    "fr": "FR-18",
+    "test": "test_average_rating_matches_manual_calculation",
+    "acceptance": "Input: rest_0001 and dish_0001. Expected: Pipeline A average = manual average = stored rating_avg.",
+    "outcome": "PASS",
+    "seconds": 0.017,
+    "evidence": "rest_0001 avg=4.00 (7 reviews)",
+    "error": ""
+  },
+  {
+    "fr": "FR-19",
+    "test": "test_top_dishes_by_cuisine",
+    "acceptance": "Input: min 3 votes, top 5. Expected: per cuisine, <= 5 dishes with >= 3 votes, sorted by average desc.",
+    "outcome": "PASS",
+    "seconds": 0.034,
+    "evidence": "mexican: Tamales de rajas @ Antojitos El Patron 5.00, Taco de suadero @ Tacos La Chata 5.00, Tamales de rajas @ Taqueria Dona Lupe 5.00",
+    "error": ""
+  },
+  {
+    "fr": "FR-26",
+    "test": "test_follow_and_unfollow",
+    "acceptance": "Steps: fresh user follows user_0002, then unfollows. Expected: edge created, visible as ~follows, then removed.",
+    "outcome": "PASS",
+    "seconds": 0.075,
+    "evidence": "follows edge created and removed",
+    "error": ""
+  },
+  {
+    "fr": "FR-27",
+    "test": "test_followers_and_following",
+    "acceptance": "Input: user_0001. Expected: both directions (follows and ~follows) with counts equal to the lists.",
+    "outcome": "PASS",
+    "seconds": 0.016,
+    "evidence": "following 5, followers 9",
+    "error": ""
+  },
+  {
+    "fr": "FR-28",
+    "test": "test_feed_from_followed_users",
+    "acceptance": "Input: user_0001. Expected: review ids come only from followed users (Dgraph), content from MongoDB, newest first.",
+    "outcome": "PASS",
+    "seconds": 0.064,
+    "evidence": "20 reviews from 5 followed users",
+    "error": ""
+  },
+  {
+    "fr": "FR-29",
+    "test": "test_recommendations_exclude_tried_dishes",
+    "acceptance": "Input: user_0001. Expected: dishes rated 4-5 by similar users, none already rated by me, sorted by score (math).",
+    "outcome": "PASS",
+    "seconds": 0.062,
+    "evidence": "Acai bowl (9 votes, avg 4.89), Quinoa bowl (7 votes, avg 4.14), Mapo tofu (5 votes, avg 4.60)",
+    "error": ""
+  },
+  {
+    "fr": "FR-30",
+    "test": "test_people_suggestions",
+    "acceptance": "Input: user_0001. Expected: friends of friends, excluding me and people I follow, ranked by mutual connections.",
+    "outcome": "PASS",
+    "seconds": 0.022,
+    "evidence": "Carlos Torres (2), Alejandro Sanchez (2), Camila Jimenez (2)",
+    "error": ""
+  },
+  {
+    "fr": "FR-31",
+    "test": "test_network_picks_at_restaurant",
+    "acceptance": "Input: user_0001 + a restaurant where followed users rated dishes 4-5. Expected: only that restaurant's dishes, liked by people I follow.",
+    "outcome": "PASS",
+    "seconds": 0.048,
+    "evidence": "rest_0001: Taco al pastor avg 4.00",
+    "error": ""
+  },
+  {
+    "fr": "FR-01",
+    "test": "test_register_user_and_reject_duplicate_email",
+    "acceptance": "Input: new e-mail + password. Expected: users document created (bcrypt hash), User node in Dgraph, duplicate e-mail rejected.",
+    "outcome": "PASS",
+    "seconds": 0.445,
+    "evidence": "created user_0041 in MongoDB + Dgraph; duplicate e-mail -> E11000 (ux_email)",
+    "error": ""
+  },
+  {
+    "fr": "FR-01",
+    "test": "test_register_rejects_invalid_email_by_validator",
+    "acceptance": "Input: e-mail without @. Expected: the $jsonSchema validator rejects the document.",
+    "outcome": "PASS",
+    "seconds": 0.441,
+    "evidence": "",
+    "error": ""
+  },
+  {
+    "fr": "FR-02",
+    "test": "test_login_and_logout",
+    "acceptance": "Steps: login with valid / invalid password, then logout. Expected: session token only for valid credentials; token invalid after logout.",
+    "outcome": "PASS",
+    "seconds": 0.882,
+    "evidence": "valid login -> session 7c93b04b...; wrong password -> AuthError; after logout token rejected",
+    "error": ""
+  },
+  {
+    "fr": "FR-03",
+    "test": "test_edit_profile",
+    "acceptance": "Input: new name, city and bio. Expected: fields persist when the profile is read again (and the Dgraph name follows).",
+    "outcome": "PASS",
+    "seconds": 0.019,
+    "evidence": "Renamed User / Guadalajara",
+    "error": ""
+  },
+  {
+    "fr": "FR-04",
+    "test": "test_set_preferences",
+    "acceptance": "Input: cuisines, dietary, price range 1-2. Expected: saved in users.preferences; invalid range rejected.",
+    "outcome": "PASS",
+    "seconds": 0.008,
+    "evidence": "{'cuisines': ['mexican', 'japanese'], 'dietary': ['vegetarian'], 'price_range': [1, 2]}",
+    "error": ""
+  },
+  {
+    "fr": "FR-05",
+    "test": "test_delete_account",
+    "acceptance": "Steps: register, delete account. Expected: user removed from MongoDB and Dgraph, login fails.",
+    "outcome": "PASS",
+    "seconds": 1.291,
+    "evidence": "user_0041 deleted; login -> AuthError",
+    "error": ""
+  },
+  {
+    "fr": "FR-12",
+    "test": "test_favorite_restaurant",
+    "acceptance": "Input: rest_0001 added twice. Expected: stored once in favorites.restaurants ($addToSet), removable.",
+    "outcome": "PASS",
+    "seconds": 0.044,
+    "evidence": "{'restaurants': ['rest_0001'], 'dishes': []}",
+    "error": ""
+  },
+  {
+    "fr": "FR-13",
+    "test": "test_favorite_dish",
+    "acceptance": "Input: dish_0006. Expected: id added to favorites.dishes; unknown dish rejected.",
+    "outcome": "PASS",
+    "seconds": 0.018,
+    "evidence": "{'restaurants': [], 'dishes': ['dish_0006']}",
+    "error": ""
+  },
+  {
+    "fr": "FR-14",
+    "test": "test_custom_lists",
+    "acceptance": "Steps: create 'Want to try', add a restaurant and a dish, remove one, repeat the name. Expected: items updated; duplicate name rejected.",
+    "outcome": "PASS",
+    "seconds": 0.039,
+    "evidence": "list_0018 items=[{'type': 'dish', 'ref_id': 'dish_0006'}]",
+    "error": ""
+  },
+  {
+    "fr": "FR-02",
+    "test": "test_demo_user_can_log_in",
+    "acceptance": "Input: seeded demo account (emilio@example.com / dishcovery123). Expected: login succeeds.",
+    "outcome": "PASS",
+    "seconds": 0.118,
+    "evidence": "",
+    "error": ""
+  }
+]
